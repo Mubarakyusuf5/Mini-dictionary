@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Dictionary</title>
+    <link rel="stylesheet" href="mini.css" />
+  </head>
+  <body>
+    <div class="content">
+      <h2>Mini Dictionary</h2>
+      <input
+        type="text"
+        name=""
+        id=""
+        placeholder="Enter a word"
+        onkeypress="handleKeyPress(event)"
+      />
+      <button id="searchButton">Search</button>
+      <p id="reSult"></p>
+    </div>
+
+    <script>
+      const word = {
+        computer:
+          " is an electronic device that process data and gives out info.",
+        Computer:
+          " is an electronic device that process data and gives out info.",
+        Comp: " is an electronic device.",
+        comp: " is an electronic device.",
+        ter: " is an electronic and gives out info.",
+        HTML: " stands for Hyper Text Markup Language.",
+        html: " stands for Hyper Text Markup Language.",
+        CSS: " stands for cascading style sheet.",
+        css: " stands for cascading style sheet.",
+        palindrome:
+          " is a word, phrase, or sentence that reads the same backward or forward.",
+        Palindrome:
+          " is a word, phrase, or sentence that reads the same backward or forward.",
+          alleviate: "To make a burden or suffering less severe; to ease",
+        aberration:" A departure from what is normal, usual, or expected",
+        air:" The invisible gaseous substance surrounding the earth, essential for life",
+        algorithm:" A step-by-step procedure or formula for solving a problem",
+        ball:" A round object used in various sports and games",
+        benevolent:" Kind, generous, and showing goodwill",
+        bird:" A warm-blooded, feathered vertebrate with wings and a beak",
+        bootstrap:" A popular front-end framework for developing responsive websites",
+        catalyst:" A substance that accelerates a chemical reaction without being consumed",
+        cat:" A small domesticated carnivorous mammal, often kept as a companion",
+        cloud:" A visible mass of water droplets or ice crystals in the atmosphere",
+        cogent:" Clear, logical, and convincing",
+        cryptography:" The practice of securing communication through codes and ciphers",
+        delineate:" To describe or portray something precisely",
+        disparate:" Distinct in kind; essentially different",
+        door:" A hinged barrier at the entrance to a building or room",
+        DOM:" Document Object Model, a programming interface for web documents",
+        eclectic:" Deriving ideas, styles, or taste from a broad and diverse range of sources",
+        elephant:" A large mammal with a trunk, large ears, and tusks, native to Africa and Asia",
+        ephemeral:" Lasting for a very short time; transient",
+        equivocate:" To use ambiguous language with the intent to deceive or mislead",
+        facade:" The face of a building, especially the principal front",
+        fractal:" A complex geometric pattern exhibiting self-similarity at various scales",
+        gargantuan:" Enormous in size or amount",
+        galvanize:" To shock or excite someone into taking action",
+        gregarious:" Fond of company; sociable",
+        guitar:" A musical instrument with six strings, played by strumming or plucking",
+        hackneyed:" Lacking significance through having been overused; unoriginal and trite",
+        haphazard:" Lacking any obvious principle of organization; random",
+        haptic:" Relating to the sense of touch",
+        home:" A place where one lives or resides, providing shelter and comfort",
+        iconoclast:" A person who attacks or criticizes cherished beliefs or institutions",
+        ice:" Frozen water, solidified by cold temperatures",
+        jazz:" A genre of music characterized by improvisation, syncopation, and unique rhythms",
+        juxtapose:" To place or deal with close together for contrasting effect",
+        kaleidoscope:" A constantly changing pattern or sequence of elements",
+        kite:" A toy consisting of a frame covered with paper or fabric, flown in the wind",
+        lamp:" A device for giving light, typically consisting of a bulb and shade",
+        labyrinth:" A complicated and confusing arrangement of passages",
+        loquacious:" Talkative, chatty, or wordy",
+        malleable:" Capable of being shaped or bent; easily influenced",
+        meticulous:" Showing great attention to detail; very careful and precise",
+        moon:" The natural satellite of Earth, orbiting the planet",
+        nebulous:" Unclear, vague, or hazy",
+        notebook:" A book with pages for writing or taking notes",
+        nuance:" A subtle difference in or shade of meaning, expression, or sound",
+        obfuscate:" To deliberately make something unclear or difficult to understand",
+        orange:" A citrus fruit with a tough bright orange rind and juicy segments",
+        peregrinate:" To travel or wander around from place to place",
+        paradox:" A statement or proposition that, despite apparently sound reasoning, leads to a contradictory conclusion",
+        puzzle:" A game, toy, or problem designed to test one's ingenuity or knowledge",
+        quiet:" Making little or no noise; silent or calm",
+        rain:" Water falling in drops from the atmosphere",
+        resilient:" Able to recover quickly from setbacks or difficulties",
+        serendipity:" The occurrence and development of events by chance in a happy or beneficial way",
+        sycophant:" A person who acts obsequiously towards someone important to gain advantage",
+        taciturn:" Reserved or uncommunicative in speech",
+        tree:" A woody perennial plant with a trunk and branches",
+        umbrella:" A device used for protection against rain or sunlight, typically consisting of a collapsible, fabric-covered frame",
+        vegetable:" A plant or part of a plant used as food, typically savory",
+        water:" A colorless, transparent, odorless liquid essential for life",
+        whimsical:" Playfully quaint or fanciful, especially in an appealing and amusing way",
+        xenophobe:" A person who dislikes or is prejudiced against people from other countries",
+        yellow:" The color of ripe lemons, egg yolks, and the sun",
+        zebra:" An African wild horse with black-and-white stripes",
+        Aberration:" A departure from what is normal, usual, or expected",
+        Air:" The invisible gaseous substance surrounding the earth, essential for life",
+        Algorithm:" A step-by-step procedure or formula for solving a problem",
+        Ball:" A round object used in various sports and games",
+        Benevolent:" Kind, generous, and showing goodwill",
+        Bird:" A warm-blooded, feathered vertebrate with wings and a beak",
+        Bootstrap:" A popular front-end framework for developing responsive websites",
+        Catalyst:" A substance that accelerates a chemical reaction without being consumed",
+        Cat:" A small domesticated carnivorous mammal, often kept as a companion",
+        Cloud:" A visible mass of water droplets or ice crystals in the atmosphere",
+        Cogent:" Clear, logical, and convincing",
+        Cryptography:" The practice of securing communication through codes and ciphers",
+        Delineate:" To describe or portray something precisely",
+        Disparate:" Distinct in kind; essentially different",
+        Door:" A hinged barrier at the entrance to a building or room",
+        DOM:" Document Object Model, a programming interface for web documents",
+        Eclectic:" Deriving ideas, styles, or taste from a broad and diverse range of sources",
+        Elephant:" A large mammal with a trunk, large ears, and tusks, native to Africa and Asia",
+        Ephemeral:" Lasting for a very short time; transient",
+        Equivocate:" To use ambiguous language with the intent to deceive or mislead",
+        Facade:" The face of a building, especially the principal front",
+        Fractal:" A complex geometric pattern exhibiting self-similarity at various scales",
+        Gargantuan:" Enormous in size or amount",
+        Galvanize:" To shock or excite someone into taking action",
+        Gregarious:" Fond of company; sociable",
+        Guitar:" A musical instrument with six strings, played by strumming or plucking",
+        Hackneyed:" Lacking significance through having been overused; unoriginal and trite",
+        Haphazard:" Lacking any obvious principle of organization; random",
+        Haptic:" Relating to the sense of touch",
+        Home:" A place where one lives or resides, providing shelter and comfort",
+        Iconoclast:" A person who attacks or criticizes cherished beliefs or institutions",
+        Ice:" Frozen water, solidified by cold temperatures",
+        Jazz:" A genre of music characterized by improvisation, syncopation, and unique rhythms",
+        Juxtapose:" To place or deal with close together for contrasting effect",
+        Kaleidoscope:" A constantly changing pattern or sequence of elements",
+        Kite:" A toy consisting of a frame covered with paper or fabric, flown in the wind",
+        Lamp:" A device for giving light, typically consisting of a bulb and shade",
+        Labyrinth:" A complicated and confusing arrangement of passages",
+        Loquacious:" Talkative, chatty, or wordy",
+        Malleable:" Capable of being shaped or bent; easily influenced",
+        Meticulous:" Showing great attention to detail; very careful and precise",
+        Moon:" The natural satellite of Earth, orbiting the planet",
+        Nebulous:" Unclear, vague, or hazy",
+        Notebook:" A book with pages for writing or taking notes",
+        Nuance:" A subtle difference in or shade of meaning, expression, or sound",
+        Obfuscate:" To deliberately make something unclear or difficult to understand",
+        Orange:" A citrus fruit with a tough bright orange rind and juicy segments",
+        Peregrinate:" To travel or wander around from place to place",
+        Paradox:" A statement or proposition that, despite apparently sound reasoning, leads to a contradictory conclusion",
+        Puzzle:" A game, toy, or problem designed to test one's ingenuity or knowledge",
+        Quiet:" Making little or no noise; silent or calm",
+        Rain:" Water falling in drops from the atmosphere",
+        Resilient:" Able to recover quickly from setbacks or difficulties",
+        Serendipity:" The occurrence and development of events by chance in a happy or beneficial way",
+        Sycophant:" A person who acts obsequiously towards someone important to gain advantage",
+        Taciturn:" Reserved or uncommunicative in speech",
+        Tree:" A woody perennial plant with a trunk and branches",
+        Umbrella:" A device used for protection against rain or sunlight, typically consisting of a collapsible, fabric-covered frame",
+        Vegetable:" A plant or part of a plant used as food, typically savory",
+        Water:" A colorless, transparent, odorless liquid essential for life",
+        Whimsical:" Playfully quaint or fanciful, especially in an appealing and amusing way",
+        Xenophobe:" A person who dislikes or is prejudiced against people from other countries",
+        Yellow:" The color of ripe lemons, egg yolks, and the sun",
+        Zebra:" An African wild horse with black-and-white stripes",
+        API:" Application Programming Interface; a set of rules that allows one software application to interact with another.",
+        Bug:" An error or defect in software that causes it to behave unexpectedly or not as intended.",
+        Compiler:" A program that translates source code written in a programming language into machine code or another programming language.",
+        Debugging:" The process of finding and fixing errors or defects in a program.",
+        Exception:" An event that occurs during the execution of a program, disrupting its normal flow.",
+        Framework:" A pre-built structure or set of tools that provides a foundation for developing software applications.",
+        Git:" A distributed version control system used for tracking changes in source code during software development.",
+        HTML:" Hypertext Markup Language; a standard markup language for creating web pages and web applications.",
+        IDE:" Integrated Development Environment; a software suite that provides comprehensive facilities to programmers for software development.",
+        JSON:" JavaScript Object Notation; a lightweight data interchange format commonly used for data exchange between a server and a web application.",
+        Kotlin:" A modern programming language that is fully interoperable with Java and designed for conciseness and safety.",
+        LambdaExpression:" A concise way to represent anonymous functions in programming languages that support functional programming.",
+        Middleware:" Software that acts as a bridge between different applications, allowing them to communicate and share data.",
+        Nodejs:" An open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside a web browser.",
+        Python:" A versatile, high-level programming language known for its readability and simplicity, often used for web development, data analysis, and more.",
+        Query:" A request for data from a database or data source using a specific syntax, such as SQL for relational databases.",
+        REST:" Representational State Transfer; an architectural style for designing networked applications, often used in web services development.",
+        Server:" A computer or software application that provides services to other computers (clients) in a network.",
+        Testing:" The process of evaluating a system or its components with the intent to find whether it satisfies specified requirements or not.",
+        VersionControl:" The management of changes to documents, programs, and other information stored in a computer, often using systems like Git or SVN.",
+        WebDevelopment:" The process of building and maintaining websites or web applications, including aspects such as web design and server-side scripting.",
+        XML:" Extensible Markup Language; a markup language that defines rules for encoding documents in a format that is both human-readable and machine-readable.",
+        YAML:" YAML Ain't Markup Language; a human-readable data serialization format commonly used for configuration files and data exchange between languages.",
+        Assembler:" A program that converts assembly language code into machine code or an intermediate form.",
+        Binary:" A base-2 number system used in computing, consisting of only 0s and 1s.",
+        Concurrency:" The ability of different parts or units of a program, algorithm, or problem to be executed out of order or in partial order.",
+        Encryption:" The process of converting information into a code to prevent unauthorized access, ensuring data security.",
+        api:" Application Programming Interface; a set of rules that allows one software application to interact with another.",
+        bug:" An error or defect in software that causes it to behave unexpectedly or not as intended.",
+        compiler:" A program that translates source code written in a programming language into machine code or another programming language.",
+        debugging:" The process of finding and fixing errors or defects in a program.",
+        exception:" An event that occurs during the execution of a program, disrupting its normal flow.",
+        framework:" A pre-built structure or set of tools that provides a foundation for developing software applications.",
+        git:" A distributed version control system used for tracking changes in source code during software development.",
+        html:" Hypertext Markup Language; a standard markup language for creating web pages and web applications.",
+        ide:" Integrated Development Environment; a software suite that provides comprehensive facilities to programmers for software development.",
+        json:" JavaScript Object Notation; a lightweight data interchange format commonly used for data exchange between a server and a web application.",
+        kotlin:" A modern programming language that is fully interoperable with Java and designed for conciseness and safety.",
+        lambdaExpression:" A concise way to represent anonymous functions in programming languages that support functional programming.",
+        middleware:" Software that acts as a bridge between different applications, allowing them to communicate and share data.",
+        nodejs:" An open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside a web browser.",
+        python:" A versatile, high-level programming language known for its readability and simplicity, often used for web development, data analysis, and more.",
+        query:" A request for data from a database or data source using a specific syntax, such as SQL for relational databases.",
+        rest:" Representational State Transfer; an architectural style for designing networked applications, often used in web services development.",
+            };
+      document.querySelector("button").addEventListener("click", function () {
+        var input = document.querySelector("input").value;
+        var reSult = document.querySelector("#reSult");
+
+        if (input == "" || input == "null") {
+          reSult.innerHTML = "Enter a search keyword";
+          reSult.style =
+            "color: red; font-weight: bold; background-color: lightgray; padding: 9px; width: 100%; border-radius: 8px;";
+        } else if (!word[input]) {
+          reSult.innerHTML = "Word not found";
+          reSult.style =
+            "color: red; font-weight: bold; background-color: lightgray; padding: 9px; width: 100%; border-radius: 8px;";
+        } else {
+          reSult.innerHTML = input + ":" + word[input];
+          reSult.style =
+            "color: black; font-weight: bold; background-color: lightgray; padding: 9px; width: 100%; border-radius: 8px;";
+        }
+      });
+
+      function handleKeyPress(event) {
+        if (event.key === "Enter") {
+          document.getElementById("searchButton").click();
+        }
+      }
+    </script>
+  </body>
+</html>
